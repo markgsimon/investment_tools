@@ -80,6 +80,10 @@ def forecast_dividends():
         print("\nNo stocks were added to the portfolio. Exiting program.")
         return
 
+    # --- Get Forecast Duration ---
+    print("\n" + "=" * 40)
+    forecast_months = get_int_input("How many months would you like to forecast? ")
+    print("=" * 40)
 
 
 # --- Run the program ---
