@@ -36,6 +36,53 @@ def forecast_dividends():
     print("Welcome to the Dividend Forecast Calculator!")
     print("=" * 40)
 
+# --- User Input & Portfolio Creation ---
+    portfolio = []
+
+    while True:
+        print("\n--- Adding a New Stock to Your Portfolio ---")
+
+        # 1. Get Ticker
+        ticker = input("Enter the stock ticker (e.g., AAPL): ").upper()
+
+        # 2. Get Stock Price
+        price = get_float_input(f"Enter the current price for {ticker}: $")
+        if price == 0:
+            print("Stock price cannot be zero. Please re-enter the stock")
+            continue
+
+        # 3. Get Dividend Per Share
+        dividend_per_share = get_float_input(f"Enter the monthly dividend per share for {ticker}: $")
+
+        # 4. Get Initial Investment
+        initial_investment = get_float_input(f"Enter your initial investment for {ticker}: $")
+
+        # Calculate initial number of shares
+        initial_shares = initial_investment / price
+        # Store all data for this stock in a dictionary
+        stock_info = {
+            'ticker': ticker,
+            'price': price,
+            'dividend': dividend_per_share,
+            'shares': initial_shares,
+        }
+
+        # Add the stock to our portfolio list
+        portfolio.append(stock_info)
+        print(f"Successfully {ticker} to your portfolio.")
+
+        # Ask user if they want to add another stock
+        add_another = input("Do you want to add another stock? (y/n): ").lower()
+        if add_another != 'y':
+            break
+
+    if not portfolio:
+        print("\nNo stocks were added to the portfolio. Exiting program.")
+        return
+
+
+
 # --- Run the program ---
 if __name__ == "__main__":
     forecast_dividends()
+
