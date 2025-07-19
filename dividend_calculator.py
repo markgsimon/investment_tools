@@ -26,3 +26,16 @@ def get_int_input(prompt):
         except ValueError:
             print("Invalid input. Please enter a whole number.")
 
+
+def forecast_dividends():
+    """
+    Calculates and forecasts compounding dividend income for a user-defined portfolio and a user-defined forecast period.
+    :return:
+    """
+    # ---Greeting---
+    print("Welcome to the Dividend Forecast Calculator!")
+    print("=" * 40)
+
+# --- Run the program ---
+if __name__ == "__main__":
+    forecast_dividends()
