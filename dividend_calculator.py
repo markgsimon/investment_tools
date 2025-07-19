@@ -1,4 +1,6 @@
 # dividend_calculator.py
+from serial import protocol_handler_packages
+
 
 def get_float_input(prompt):
     """A helpter function to get a valid non-negative float from the user."""
@@ -84,6 +86,35 @@ def forecast_dividends():
     print("\n" + "=" * 40)
     forecast_months = get_int_input("How many months would you like to forecast? ")
     print("=" * 40)
+
+    #--- Calculation Loop ---
+    print(f"\n--- Monthly Forecast ({forecast_months} Months) ---")
+
+    for month in range(1, forecast_months + 1):
+        print(f"\n--------- Month {month} ----------")
+        total_monthly_income = 0
+
+        # Iterate through each stock in the portfolio
+        for stock in portfolio:
+            # 1. Calculate Monthly Dividend
+            monthly_dividend = stock['shares'] * stock['dividend']
+            total_monthly_income += monthly_dividend
+
+            # 2. calculate New Shares from DRIP (reinvestment)
+            reinvested_shares = monthly_dividend / stock['price']
+
+            # print the results for the current month
+            print(f"   {stock['ticker']}:")
+            print(f"   Shares Owned: {stock['shares']:.2f}")
+            print(f"   Monthly Income: ${monthly_dividend:.2f}")
+            print(f"   New Shares Purchased (DRIP: {reinvested_shares:.2f})")
+
+            # 3. update total shares for the next month
+            stock['shares'] += reinvested_shares
+
+        print("-------------------------------")
+        print(f"Total Income for Month {month}: ${total_monthly_income:.2f}")
+        print("===============================")
 
 
 # --- Run the program ---
