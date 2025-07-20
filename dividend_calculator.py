@@ -32,7 +32,6 @@ def get_int_input(prompt):
 def forecast_dividends():
     """
     Calculates and forecasts compounding dividend income for a user-defined portfolio and a user-defined forecast period.
-    :return:
     """
     # ---Greeting---
     print("Welcome to the Dividend Forecast Calculator!")
