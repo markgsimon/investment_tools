@@ -1,6 +1,10 @@
-# dividend_calculator.py
+# dividend_calculator.py (now our CLI front-end)
+
 from serial import protocol_handler_packages
 
+# Import the function from our engine file
+
+from calculator_engine import run_forecast
 
 def get_float_input(prompt):
     """A helper function to get a valid non-negative float from the user."""
