@@ -37,3 +37,6 @@ def run_forecast(portfolio, forecast_months):
             # 3. Update total shares for the next month
             stock['shares'] += reinvested_shares
 
+        results_log.append("---------------------------------")
+        results_log.append(f"Total Income for Month {month}: ${total_monthly_income:.2f}")
+        results_log.append("=================================")
