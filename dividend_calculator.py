@@ -3,7 +3,7 @@ from serial import protocol_handler_packages
 
 
 def get_float_input(prompt):
-    """A helpter function to get a valid non-negative float from the user."""
+    """A helper function to get a valid non-negative float from the user."""
     while True:
         try:
             # Get input and remove any comas
@@ -71,7 +71,7 @@ def forecast_dividends():
 
         # Add the stock to our portfolio list
         portfolio.append(stock_info)
-        print(f"Successfully {ticker} to your portfolio.")
+        print(f"Successfully added {ticker} to your portfolio.")
 
         # Ask user if they want to add another stock
         add_another = input("Do you want to add another stock? (y/n): ").lower()
