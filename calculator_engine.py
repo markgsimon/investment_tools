@@ -40,3 +40,5 @@ def run_forecast(portfolio, forecast_months):
         results_log.append("---------------------------------")
         results_log.append(f"Total Income for Month {month}: ${total_monthly_income:.2f}")
         results_log.append("=================================")
+
+    return results_log
