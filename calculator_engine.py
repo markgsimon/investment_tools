@@ -28,4 +28,8 @@ def run_forecast(portfolio, forecast_months):
 
             reinvested_shares = monthly_dividend / stock['price']
 
-            #
+            # add the results for this stock to the log
+            results_log.append(f"   {stock['ticker']}:")
+            results_log.append(f"   Shares owned: {stock['shares']:.2f}")
+            results_log.append(f"   Monthly Income: ${monthly_dividend:.2f}")
+            results_log.append(f"    New Shares Purchased (DRIP): {reinvested_shares:.2f}")
