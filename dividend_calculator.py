@@ -33,9 +33,9 @@ def get_int_input(prompt):
             print("Invalid input. Please enter a whole number.")
 
 
-def forecast_dividends():
+def start_cli_app():
     """
-    Calculates and forecasts compounding dividend income for a user-defined portfolio and a user-defined forecast period.
+    This function handles all the command-line interaction (input/print)
     """
     # ---Greeting---
     print("Welcome to the Dividend Forecast Calculator!")
@@ -90,37 +90,16 @@ def forecast_dividends():
     forecast_months = get_int_input("How many months would you like to forecast? ")
     print("=" * 40)
 
-    #--- Calculation Loop ---
-    print(f"\n--- Monthly Forecast ({forecast_months} Months) ---")
+    # --- call the engine and print results ---
+    # call the function from our engine to do the calculation
+    results = run_forecast(portfolio, forecast_months)
 
-    for month in range(1, forecast_months + 1):
-        print(f"\n--------- Month {month} ----------")
-        total_monthly_income = 0
-
-        # Iterate through each stock in the portfolio
-        for stock in portfolio:
-            # 1. Calculate Monthly Dividend
-            monthly_dividend = stock['shares'] * stock['dividend']
-            total_monthly_income += monthly_dividend
-
-            # 2. calculate New Shares from DRIP (reinvestment)
-            reinvested_shares = monthly_dividend / stock['price']
-
-            # print the results for the current month
-            print(f"   {stock['ticker']}:")
-            print(f"   Shares Owned: {stock['shares']:.2f}")
-            print(f"   Monthly Income: ${monthly_dividend:.2f}")
-            print(f"   New Shares Purchased (DRIP: {reinvested_shares:.2f})")
-
-            # 3. update total shares for the next month
-            stock['shares'] += reinvested_shares
-
-        print("-------------------------------")
-        print(f"Total Income for Month {month}: ${total_monthly_income:.2f}")
-        print("===============================")
-
+    # print the results that the engine returned
+    print("\n--- Forecast Results ---")
+    for line in results:
+        print(line)
 
 # --- Run the program ---
 if __name__ == "__main__":
-    forecast_dividends()
+    start_cli_app()
 
