@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dividend Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <div class="container mx-auto p-4 md:p-8 max-w-4x1">
+        <header class="text-center mb-8">
+            <h1 class="text-4x1 font-bold text-gray-900">Dividend Forecast Calculator</h1>
+            <p class="text-lg text-gray-600 mt-2">Build your portfolio and forecast your passive income</p>
+        </header>
+
+<!--        Form to Add a New Stock-->
+        <div class="bg-white p-6 rounded-xl shadow-md mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Add a stock to Your Portfolio</h2>
+            <form action="/add_stock" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label for="ticker" class="block text-sm font-medium text-gray-700">Ticker Symbol</label>
+                    <input type="text" name="ticker" id="ticker" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="e.g., AAPL">
+                </div>
+                <div>
+                    <label for="price" class="block text-sm font-medium text-gray-700">Current Stock Price</label>
+                    <input type="number" step="0.01" name="price" id="price" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="e.g., 150.25">
+                </div>
+                    <div>
+                    <label for="dividend" class="block text-sm font-medium text-gray-700">Monthly Dividend/Share</label>
+                    <input type="number" step="0.01" name="dividend" id="dividend" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="e.g., 0.23">
+                </div>
+                <div>
+                    <label for="investment" class="block text-sm font-medium text-gray-700">Initial Investment</label>
+                    <input type="number" step="0.01" name="investment" id="    <div>
+                    <label for="dividend" class="block text-sm font-medium text-gray-700">Monthly Dividend/Share</label>
+                    <input type="number" step="0.01" name="dividend" id="dividend" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="e.g., 0.23">
+                </div>
+                <div>
+                    <label for="investment" class="block text-sm font-medium text-gray-700">Initial Investment</label>
+                    <input type="number" step="0.01" name="investment" id="investment" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="e.g., 5000">
+                </div>
+                <div class="md:col-span-2 text-right">
+                    <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Add Stock
+                    </button>
+                </div>investment" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="e.g., 5000">
+                </div>
+                <div class="md:col-span-2 text-right">
+                    <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Add Stock
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
