@@ -87,3 +87,16 @@ def calculate():
         print(f"Error during calculation: {e}")
         return redirect(url_for('index'))
 
+@app.route('/clear')
+def clear_session():
+    """
+    A simple route to clear the session and start over
+    :return:
+    """
+    session.clear()
+    return redirect(url_for('index'))
+
+# This allows the script to be run directly
+if __name__ == '__main__':
+    # 'debug=True' makes development easier. It auto-reloads when you save changes.
+    app.run(debug=True)
