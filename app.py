@@ -4,14 +4,14 @@ from calculator_engine import run_forecast # Import our existing engine
 import os #Import the os module to access environment variables
 from dotenv import load_dotenv # import the function to load the .env file
 
-# Load envrionment variables from .env file
+# Load environment variables from .env file
 load_dotenv()
 
 # Initialize the Flask app
 app = Flask(__name__)
 
 # A secret key is needed to securely manage session data
-# It's loaded from an envrionment variable for security
+# It's loaded from an environment variable for security
 # The second argument is a default key for safety if the variable isn't set.
 app.secret_key = os.getenv('SECRET_KEY', 'a_default_fallback_key_for_development')
 
@@ -30,7 +30,6 @@ def index():
 def add_stock():
     """
     This route handles the form submission for adding a new stock. It processes the form data and adds the new stock to the session profile
-    :return:
     """
     try:
         # Get data from the submitted form
@@ -64,3 +63,27 @@ def add_stock():
         print(f"Error processing form: {e}")
     # Redirect the user back to the main page
     return redirect(url_for('index'))
+
+@app.route('/calculate', methods=['POST'])
+def calculate():
+    """
+    This route handles the forecast calculation. It gets the portfolio from the session, calls the engine, and displays the results.
+    :return:
+    """
+    try:
+        forecast_months = int(request.form['months'])
+        portfolio = session.get('portfolio', [])
+
+        if not portfolio or forecast_months <= 0:
+            return redirect(url_for('index'))
+
+        # call our reliable engine to do the heavy lifting
+        results_log = run_forecast(portfolio, forecast_months)
+
+        # Render the results page, passing the log to it
+        return render_template('results.html', results=results_log)
+
+    except (ValueError, KeyError) as e:
+        print(f"Error during calculation: {e}")
+        return redirect(url_for('index'))
+
