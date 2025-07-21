@@ -27,3 +27,40 @@ def index():
     return render_template('index.html', portfolio=session['portfolio'])
 
 @app.route('/add_stock', methods=['POST'])
+def add_stock():
+    """
+    This route handles the form submission for adding a new stock. It processes the form data and adds the new stock to the session profile
+    :return:
+    """
+    try:
+        # Get data from the submitted form
+        ticker = request.form['ticker'].upper()
+        price = float(request.form['price'])
+        dividend = float(request.form['dividend'])
+        investment = float(request.form['investment'])
+
+        if price == 0:
+            # in production, we will show an error message. for now, we just won't add it.
+            return redirect(url_for('index'))
+
+        # Calculate initial shares
+        initial_shares = investment / price
+
+        # Create the stock dictionary
+        stock_info = {
+            'ticker': ticker,
+            'price': price,
+            'dividend': dividend,
+            'shares': initial_shares,
+        }
+
+        # Add the new stock to the portfolio in the session
+        session['portfolio'].append(stock_info)
+        # session.modified = True is needed to tell Flask the session has changed
+        session.modified = True
+
+    except (ValueError, KeyError) as e:
+        # basic error handling if form data is bad
+        print(f"Error processing form: {e}")
+    # Redirect the user back to the main page
+    return redirect(url_for('index'))
